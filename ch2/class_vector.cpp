@@ -2,15 +2,24 @@
 
 using namespace std;
 
-class Vector {
-public:
-    Vector(int s) :elem{new double[s]}, sz{s} { } //default constructor
-    double& operator[](int i) { return elem[i];} //access element: subscripting
-    int size() { return sz;}
-private:
-    double* elem; //pointer to the element
-    int sz;       //the number of elements
-};
+#include "class_vector.h" // get Vector's interface
+
+Vector::Vector(int s)
+     :elem{new double[s]}, sz{s}      // initialize members
+{
+}
+
+double& Vector::operator[](int i)
+{
+    if (i<0 || size()<i)
+        throw out_of_range{"Vector::operator[]"};
+    return elem[i];
+}
+
+int Vector::size()
+{
+     return sz;
+}
 
 double read_and_sum(int s)
 {
