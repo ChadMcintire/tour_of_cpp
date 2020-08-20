@@ -5,8 +5,11 @@ using namespace std;
 #include "class_vector.h" // get Vector's interface
 
 Vector::Vector(int s)
-     :elem{new double[s]}, sz{s}      // initialize members
 {
+    if (s<0)
+        throw length_error{"Vector constructor: negative size"};
+     elem = new double[s];
+     sz = s// initialize members
 }
 
 double& Vector::operator[](int i)
