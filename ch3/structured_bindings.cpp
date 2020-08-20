@@ -20,7 +20,7 @@ Entry read_entry(istream& is)     // naive read function (for a better version, 
 
 int main() 
 {
-    auto e = read_entry(cin);
-    cout << "{ " << e.name << "," << e.value << " }\n";
+    auto [n,v] = read_entry(cin);
+    cout << "{" << n << "," << v << " }\n";
     return 0;
 }
