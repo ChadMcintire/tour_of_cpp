@@ -1,1 +1,37 @@
 Q. When should you use a variant as opposed to a union?
+
+Q. How can RAII (Resource Acquisition Is Initialized) be used effectively?
+
+Q. Why would use a noexcept?
+    1.One way to ensure termination is to add noexcept to a function so that a 
+    throw from anywhere in the function’s implementation will turn into a 
+    terminate()
+
+Q. How could I use the notion of invariants to make better class design?
+
+Q. What are some thoughts on error handling best practices?
+    1.Don’t believe that all error codes or all exceptions are bad; there are
+    clear uses for both. Furthermore, do not believe the myth that exception 
+    handling is slow; it is often faster than correct handling of complex or 
+    rare error conditions, and of repeated tests of error codes.
+
+Q. When is more appropriate to pass-by-value or pass-by-refernce?
+   1.When we care about performance, we usually pass small values 
+   by-value and larger ones by-reference. Here “small” means “something 
+   that’s really cheap to copy.” Exactly what “small” means depends on 
+   machine architecture, but “the size of two or three pointers or less” 
+   is a good rule of thumb.
+Q. When is it appropriate to return by reference?
+   1.We return “by reference” only when we want to grant a caller access 
+   to something that is not local to the function. 
+
+Q. When do you use a move constructor?
+
+Q. When should we be weary of auto?
+   1.But should be used carefully because a deduced type does not offer 
+   a stable interface
+
+
+
+Topics to research:
+1.Error handling
