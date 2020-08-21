@@ -9,7 +9,7 @@ Vector::Vector(int s)
     if (s<0)
         throw length_error{"Vector constructor: negative size"};
      elem = new double[s];
-     sz = s// initialize members
+     sz = s;// initialize members
 }
 
 double& Vector::operator[](int i)
@@ -19,7 +19,7 @@ double& Vector::operator[](int i)
     return elem[i];
 }
 
-int Vector::size()
+int Vector::size() const
 {
      return sz;
 }
