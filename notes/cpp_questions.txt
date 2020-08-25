@@ -31,7 +31,45 @@ Q. When should we be weary of auto?
    1.But should be used carefully because a deduced type does not offer 
    a stable interface
 
+Q. When should we be weary of dynamic_cast
+   1. Code is cleaner when dynamic_cast is used with restraint. If we can avoid
+using type information, we can write simpler and more efficient code, but 
+occasionally type information is lost and must be recovered.
+   2. Use dynamic_cast where class hierarchy navigation is unavoidable
+   3. Use dynamic_cast to a reference type when failure to find the required
+      class is considered a failure
+   4. Use dynamic_cast to a pointer when failure to find the required class
+      is considered a valid alternative
 
+
+
+Q. When should you use a unique_ptr or shared_ptr
+   Use unique_ptr or shared_ptr to avoid forgetting to delete objects created
+   using new;
+
+Q. If a class is an container give it an initializer-list constructor, 
+   What is a initializer-list constructor
+
+Q. When should you be explicit about the copy and move operations of a class
+   1. When a class has a pointer member, the reason is a pointer may point to
+   something that the class needs to delete, in which case the default 
+   memberwise copy would be wrong. Alternatively, it might point to something
+   that the class must not delete;
+
+Q. What is a good rule of thumb for defining operations.
+   1. Either define all of the essential operations or none(using the default
+   for all)
+
+Q. When should you use =default and =delete on constructors
+
+Q. What is the difference between implicit and explicit conversion
+
+Q. How should objects be copied?
+   1. Concrete type generally memberwise copy is the right semantic, for some
+   sophisticated concrete types, such as vector, memberwise copy is not right.
+   for abstract types it almost never is.
+
+Q. How do you use namespaces in C++;
 
 Topics to research:
 1.Error handling
