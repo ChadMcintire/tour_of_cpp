@@ -1,3 +1,4 @@
+template<typename T>
 class Vector {
 public:
     Vector(int s); //default constructor
@@ -8,17 +9,17 @@ public:
     Vector& operator=(const Vector& a); //copy assignment
 
     // bracket operators
-    double& operator[](int i); //access element: subscripting
-    const double& operator[](int i) const; //access element: subscripting
+    T& operator[](int i); //access element: subscripting
+    const T& operator[](int i) const; //access element: subscripting
 
     //move 
     Vector(Vector&& a);  //move constructor 
     Vector& operator=(Vector&& a); //move assignment
 
-    int size() const;
+    T size() const;
 
 private:
-    double* elem; //pointer to the element
+    T* elem; //pointer to the element
     int sz;       //the number of elements
 };
 

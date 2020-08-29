@@ -4,48 +4,56 @@ using namespace std;
 
 #include "class_vector.h" // get Vector's interface
 
-Vector::Vector(int s)    //establish invariant, acquire resources
+
+template<typename T>
+Vector<T>::Vector(int s)    //establish invariant, acquire resources
 {
     if (s<0)
         throw length_error{"Vector constructor: negative size"};
-     elem = new double[s];
+     elem = new T[s];
      sz = s;// initialize members
 }
 
-double& Vector::operator[](int i)
+template<typename T>
+T& Vector<T>::operator[](int i)
 {
     if (i<0 || size()<i)
         throw out_of_range{"Vector::operator[]"};
     return elem[i];
 }
 
-const double& Vector::operator[](int i) const
+template<typename T>
+const T& Vector<T>::operator[](int i) const
 {
     if (i<0 || size()<i)
         throw out_of_range{"Vector::operator[]"};
     return elem[i];
 }
 
-int Vector::size() const
+template<typename T>
+T Vector<T>::size() const
 {
      return sz;
 }
 
-Vector::~Vector(){
+template<typename T>
+Vector<T>::~Vector(){
     delete[] elem;  // destructor 
 }
 
-Vector::Vector(const Vector& a) //copy constructor
-    :elem{new double[a.sz]},    //allocate space for elements
+template<typename T>
+Vector<T>::Vector(const Vector& a) //copy constructor
+    :elem{new T[a.sz]},    //allocate space for elements
     sz{a.sz}
 {
     for (int i=0; i!=sz; ++i) //copy elements
         elem[i] = a.elem[i];
 }
 
-Vector& Vector::operator=(const Vector& a) //copy assignment
+template<typename T>
+Vector<T>& Vector<T>::operator=(const Vector& a) //copy assignment
 {
-    double* p = new double[a.sz];  //a pointer to an allocate memory to an array of doubles
+    T* p = new T[a.sz];  //a pointer to an allocate memory to an array of doubles
     for (int i=0; i!=a.sz; ++i){
         p[i] = a.elem[i]; //assign to the space
     }
@@ -56,14 +64,15 @@ Vector& Vector::operator=(const Vector& a) //copy assignment
 }
 
 //non-member function operator
-Vector operator+(const Vector& a, const Vector& b)
+template<typename T>
+Vector<T> operator+(const Vector<T>& a, const Vector<T>& b)
 {
   if (a.size()!=b.size())
   {
         throw out_of_range{"operator+ vector a and b different size"};
   }
 
-  Vector res(a.size());
+  Vector<T> res(a.size());
   for (int i=0; i!=a.size(); ++i)
   {
       res[i]=a[i]+b[i];
@@ -71,8 +80,9 @@ Vector operator+(const Vector& a, const Vector& b)
   return res;
 }
 
+template<typename T>
 //move constructor
-Vector::Vector(Vector&& a) //&& means rvalue reference
+Vector<T>::Vector(Vector&& a) //&& means rvalue reference
     :elem{a.elem}, //grab elements from a
     sz{a.sz}
 {
@@ -80,9 +90,10 @@ Vector::Vector(Vector&& a) //&& means rvalue reference
     a.sz = 0;
 }
 
+
 double read_and_sum(int s)
 {
-    Vector v(s);
+    Vector<double> v(s);
     for (int i=0; i!=v.size(); ++i)
         cin>>v[i];
 
